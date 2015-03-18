@@ -60,7 +60,7 @@ static purse *instance = nil;
     while (m < 0) {
         m = [user getCreditForStoreIDAsync:app_store_id/*getPurseMoneyAsync*/];
     }
-    [self.purseMoney setText:[NSString stringWithFormat:@"剩余积分：%ld分", m]];
+    [self.purseMoney setText:[NSString stringWithFormat:@"剩余积分：%ld分 兑换比例：￥1=%.2f分", (long)m, 100 * [store creditToCentRatio]]];
     self.usingThreads--;
 }
 
