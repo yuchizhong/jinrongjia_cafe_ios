@@ -540,7 +540,9 @@ static cart *myOrder = nil;
     }
     
     NSString *str2 = [NSString stringWithFormat:@"%ld积分", [[activity objectForKey:@"creditPrice"] integerValue]];
-    if ([[activity objectForKey:@"creditPrice"] integerValue] == 0) {
+    if ([[activity objectForKey:@"creditAvail"] integerValue] == 0) {
+        str2 = @"积分不可用";
+    } else if ([[activity objectForKey:@"creditPrice"] integerValue] == 0) {
         str2 = @"免积分";
     } else if ([[activity objectForKey:@"creditPrice"] integerValue] < 0) {
         str2 = [NSString stringWithFormat:@"赠%ld积分", -[[activity objectForKey:@"creditPrice"] integerValue]];

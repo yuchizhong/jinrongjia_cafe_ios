@@ -250,7 +250,10 @@ static activityDetails *acdetailInstance = nil;
         [HTTPRequest alert:@"对不起，本次活动名额已用完"];
     }
     
-    if ([[self.activityInfo objectForKey:@"creditPrice"] integerValue] <= 0) {
+    if ([[self.activityInfo objectForKey:@"creditAvail"] integerValue] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"报名" message:[NSString stringWithFormat:@"该活动不支持积分报名，请电话咨询\n%@", J_PHONE] delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    } else if ([[self.activityInfo objectForKey:@"creditPrice"] integerValue] <= 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"报名" message:@"请确认是否报名" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
         alert.tag = 10;
         [alert show];
